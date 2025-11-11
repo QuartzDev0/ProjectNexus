@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin Login - Project: Nexus</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+      }
+      .login-box {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+      .login-box h1 {
+        margin-bottom: 30px;
+        color: #fff;
+      }
+      .login-input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        color: #fff;
+        font-size: 14px;
+      }
+      .login-input:focus {
+        outline: none;
+        border-color: #6366f1;
+      }
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        background: #6366f1;
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .login-btn:hover {
+        background: #4f46e5;
+      }
+      .error-msg {
+        color: #ef4444;
+        margin-top: 10px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container left">
+        <a href="/"><h1>NEXUS</h1></a>
+      </div>
+    </header>
+
+    <main>
+      <div class="login-container">
+        <div class="login-box">
+          <h1>Admin Login</h1>
+          <input type="password" id="adminKey" class="login-input" placeholder="Enter admin key" />
+          <button class="login-btn" onclick="login()">Login</button>
+          <p class="error-msg" id="errorMsg">Invalid admin key</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; Copyright 2023-25, Aurora Softworks. All Rights Reserved.</p>
+      <p>&copy; Copyright 2025, Nexus Organization. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      function login() {
+        const key = document.getElementById('adminKey').value;
+        const errorMsg = document.getElementById('errorMsg');
+        
+        fetch('/api/auth/admin', {
+          method: 'POST',
+          headers: {
+            'x-nexus-admin': key
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            window.location.href = '/admin';
+          } else {
+            errorMsg.style.display = 'block';
+          }
+        })
+        .catch(() => {
+          errorMsg.style.display = 'block';
+        });
+      }
+
+      document.getElementById('adminKey').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') login();
+      });
+    </script>
+  </body>
+</html>

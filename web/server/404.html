@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>404 | Not Found</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      body {
+        background-color: #000;
+        color: #fff;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 600px;
+        padding: 20px;
+        animation: fadeIn 1.2s ease-out;
+      }
+
+      img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 20px;
+        opacity: 0.9;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        opacity: 0.8;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <img src="/images/not-found.png" alt="Not Found Icon" />
+      <h2>Not Found</h2>
+      <p>Sorry, we couldn't find what you were looking for.</p>
+      <p>If you were expecting this because we said something, try again later.</p>
+    </div>
+  </body>
+</html>
